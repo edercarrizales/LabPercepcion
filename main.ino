@@ -1,9 +1,7 @@
-/* referencia: http://panamahitek.com/orientacion-a-objetos-en-arduino/ */
-
 /* CODIGO PRINCIPAL DE LA RED NEURONAL */
 #include "Neurona.h" //para incluir a la clase Neurona en nuestro codigo principal
 Neurona neuron[10]; //creación de un vector de objetos con las 10 neuronas
-float pesos[][]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
+float pesos[10][5]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
 	           {-1.0236, 1.2626, -1.1912, -0.93483, 0.17389},
 	           {-1.0334, 0.97535, 0.70657, -0.77163, 1.5046},
 	           {0.48952, -1.4867, -1.1721, -1.0599, -0.1817},
@@ -13,8 +11,8 @@ float pesos[][]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
 	           {0.44124, 0.4415, 0.4986, -1.8219, 0.70645},
 	           {0.78649, 0.97337, -0.020147, -1.3024, -1.2905},
 	           {-0.84858, -0.42739, -1.1201, 0.91443, 1.391}}; //Matriz de pesos que tendrá cada neurona
-float o[]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0.32111, 0.19862, -0.048843}; //vector de pesos de las salidas de cada neurona
-float entradas[];  //vector para entradas
+float o[10]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0.32111, 0.19862, -0.048843}; //vector de pesos de las salidas de cada neurona
+float entradas[5];  //vector para entradas
 float sum_salidas; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
 float y; //variable de salida de la red neuronal
 
@@ -36,8 +34,7 @@ void loop(){
      neuron[k].sumatoria(); //realiza la sumatoria y funcion para cada neurona
      sum_salidas+=neuron[k].getfx()*o[k]; //sumatoria de las salidas de las neuronas por su peso
   }
-  y=1/(1+exp(sum*-1)); //SALIDA DE LA RED NEURONAL. Debe ser aproximadamente 1 para este caso.
+  y=1/(1+exp(sum_salidas*-1)); //SALIDA DE LA RED NEURONAL. Debe ser aproximadamente 1 para este caso.
   Serial.println(y);
      
 }
-
