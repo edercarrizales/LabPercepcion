@@ -1,7 +1,7 @@
 /* referencia: http://panamahitek.com/orientacion-a-objetos-en-arduino/ */
 
-*/ CODIGO PRINCIPAL DE LA RED NEURONAL */
-#include <Neurona.h> //para incluir a la clase Neurona en nuestro codigo principal
+/* CODIGO PRINCIPAL DE LA RED NEURONAL */
+#include "Neurona.h" //para incluir a la clase Neurona en nuestro codigo principal
 Neurona neuron[10]; //creación de un vector de objetos con las 10 neuronas
 float pesos[]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
 	           {-1.0236, 1.2626, -1.1912, -0.93483, 0.17389},
@@ -16,11 +16,11 @@ float pesos[]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
 float o[]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0.32111, 0.19862, -0.048843}; //vector de pesos de las salidas de cada neurona
 float entradas[];  //vector para entradas
 float sum_salidas; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
+float y; //variable de salida de la red neuronal
 
 void setup(){
 //INICIO MONITOR SERIAL
 Serial.begin(9600);
-neuron[] = new Neurona; //inicia constructor
 //ASIGNACION DE PESOS A CADA NEURONA ***REVISAR***
  for(int i=0;i<10;i++){
    for(int j=0;j<5;j++){
