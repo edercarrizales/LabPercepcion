@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <math.h>
+
 class Neurona{ //inicio de la clase Neurona
    public: 
 //atributos
