@@ -15,7 +15,7 @@ class Neurona{ //inicio de la clase Neurona
 	    w[5]=valuep[5]; 
     }//para meter los pesos en la neurona
     void setentradas(float valuex[]){
-    		x[5]=valuex[5]:
+    		x[5]=valuex[5];
     }//para meter las entradas a la neurona
     void sumatoria(){
 	    for(int i=0;i<5;i++){ //sumatoria y activación
