@@ -5,9 +5,7 @@ class Neurona{ //inicio de la clase Neurona
    float x[5];
    float fx, sum;
    int bias=1;
- 
-//constructor 
-    Neurona(); 
+  
     
 //metodos
     void setpesos(float valuep[]); //para meter los pesos en la neurona
@@ -15,11 +13,6 @@ class Neurona{ //inicio de la clase Neurona
     void sumatoria(); //para realizar la sumatoria y activación
     float getfx(); //para obtener la salida de la neurona	
 };
-
-
-Neurona::Neurona(){ //se define constructor
-	bias=1;		
-}
 
 void Neurona::setpesos(float valuep[5]){ //para definir pesos
 	w[5]=valuep[5]; 
