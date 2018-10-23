@@ -1,7 +1,3 @@
-#ifndef Neurona_h
-#define Neurona_h
-#include "Arduino.h"
-
 class Neurona{ //inicio de la clase Neurona
    public: 
 //atributos
@@ -18,5 +14,25 @@ class Neurona{ //inicio de la clase Neurona
     void setentradas(float valuex[]); //para meter las entradas a la neurona
     void sumatoria(); //para realizar la sumatoria y activación
     float getfx(); //para obtener la salida de la neurona	
+};
 
+
+Neurona::Neurona(){ //se define constructor
+	bias=1;		
+}
+
+void Neurona::setpesos(float valuep[5]){ //para definir pesos
+	w[5]=valuep[5]; 
+}
+void Neurona::setentradas(float valuex[5]){ //para definir entradas
+	x[5]=valuex[5]
+}
+void Neurona::sumatoria(){
+	for(int i=0;i<5;i++){ //sumatoria y activación
+	   sum+=w[i]*x[i];
+	}
+	fx=1/(1+exp((sum+bias)*-1));
+}
+float Neurona::getfx(){ //obtener la salida de la neurona
+	return fx;
 }
