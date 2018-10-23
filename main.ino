@@ -3,7 +3,7 @@
 /* CODIGO PRINCIPAL DE LA RED NEURONAL */
 #include "Neurona.h" //para incluir a la clase Neurona en nuestro codigo principal
 Neurona neuron[10]; //creación de un vector de objetos con las 10 neuronas
-float pesos[]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
+float pesos[][]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841},
 	           {-1.0236, 1.2626, -1.1912, -0.93483, 0.17389},
 	           {-1.0334, 0.97535, 0.70657, -0.77163, 1.5046},
 	           {0.48952, -1.4867, -1.1721, -1.0599, -0.1817},
