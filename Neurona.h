@@ -7,7 +7,7 @@ class Neurona{ //inicio de la clase Neurona
    float w[5];
    float x[5];
    float fx, sum;
-   int bias=1;
+   int bias;
    
 //metodos
     void setpesos(float valuep){
@@ -16,6 +16,12 @@ class Neurona{ //inicio de la clase Neurona
                w[i]=valuep;
                }
     }
+ void setbias(float valuec){
+	   //para asignar el bias en la neurona
+               bias=valuec;
+               
+    }
+	
     void setentradas(float valuex){     //para meter las entradas a la neurona y guardarlas en su arreglo x
      for(int m=0;m<5;m++){
         x[m]=valuex;
