@@ -7,7 +7,7 @@ class Neurona{ //inicio de la clase Neurona
    float w[5];
    float x[5];
    float fx, sum;
-   int bias;
+   float bias;
    
 //metodos
     void setpesos(float valuep){
