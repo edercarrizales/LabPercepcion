@@ -2,7 +2,7 @@
 /* CODIGO PRINCIPAL DE LA RED NEURONAL (PUDO COMPILARSE, FALTA VERIFICARLO)*/
 #include "Neurona.h" //para incluir a la clase Neurona en nuestro codigo principal
 Neurona neuron[10]; //creación de un vector de objetos con las 10 neuronas
-float pesos[10][5]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841}, //matriz de pesos
+float pesos[10][5]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841}, //matriz de pesos de las entradas
 	           {-1.0236, 1.2626, -1.1912, -0.93483, 0.17389},
 	           {-1.0334, 0.97535, 0.70657, -0.77163, 1.5046},
 	           {0.48952, -1.4867, -1.1721, -1.0599, -0.1817},
@@ -22,9 +22,9 @@ void setup(){
 //INICIO MONITOR SERIAL
 Serial.begin(9600);
    for(int i=0;i<10;i++){ //asignacion de pesos y bias para cada neurona
+      neuron[i].setbias(wbias[i]);
      for(int j=0;j<5;j++){
      neuron[i].setpesos(pesos[i][j]);
-     neuron[i].setbias(wbias[i]);
      }
    } 
 }
