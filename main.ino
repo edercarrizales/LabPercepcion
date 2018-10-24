@@ -13,6 +13,7 @@ float pesos[10][5]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841}, //matriz de pe
 	           {0.78649, 0.97337, -0.020147, -1.3024, -1.2905},
 	           {-0.84858, -0.42739, -1.1201, 0.91443, 1.391}};
 float o[10]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0.32111, 0.19862, -0.048843}; //vector de pesos de las salidas de cada neurona
+float wbias[10]={-1.9225, 1.8616, 1.0561, -0.84638, 0.22494, 0.26181, 0.58798, 1.3424, 1.7201, -2.2158}; //vector de pesos de los bias de cada neurona
 float entradas[5]={100,20,20,70,90};  //vector para entradas. Aqui asigné las entradas para probar con el primer caso de nuestra tabla.
 float sum_salidas; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
 float y; //variable de salida de la red neuronal
@@ -20,9 +21,10 @@ float y; //variable de salida de la red neuronal
 void setup(){
 //INICIO MONITOR SERIAL
 Serial.begin(9600);
-   for(int i=0;i<10;i++){ //asignacion de pesos para cada neurona
+   for(int i=0;i<10;i++){ //asignacion de pesos y bias para cada neurona
      for(int j=0;j<5;j++){
      neuron[i].setpesos(pesos[i][j]);
+     neuron[i].setbias(wbias[i]);
      }
    } 
 }
