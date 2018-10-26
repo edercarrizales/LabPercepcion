@@ -16,7 +16,7 @@ float o[10]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0
 float wbias[10]={-1.9225, 1.8616, 1.0561, -0.84638, 0.22494, 0.26181, 0.58798, 1.3424, 1.7201, -2.2158}; //vector de pesos de los bias de cada neurona
 float entradas[5]={100,20,20,70,90};  //vector para entradas. Aqui asigné las entradas para probar con el primer caso de nuestra tabla.
 float sum_salidas; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
-float y; //variable de salida de la red neuronal
+float normy,y; //variables de salida de la red neuronal
 
 void setup(){
 //INICIO MONITOR SERIAL
@@ -38,7 +38,7 @@ void loop(){
      neuron[k].sumatoria(); //realiza la sumatoria y funcion para cada neurona
      sum_salidas+=neuron[k].getfx()*o[k]; //sumatoria de las salidas de las neuronas multiplicadas por su peso
   }
-  y=1/(1+exp(sum_salidas*-1)); //SALIDA DE LA RED NEURONAL. Debe ser aproximadamente 1 para este caso.
+  normy=1/(1+exp(sum_salidas*-1)); //SALIDA DE LA RED NEURONAL NORMALIZADA EN RANGO 0 A 1
+  y=(normy*2)+1; //SALIDA DE LA RED NEURONAL DESNORMALIZADA
   Serial.println(y);
-    /***************ES POSIBLE QUE FALTE NORMALIZAR LAS ENTRADAS************/
 }
