@@ -53,6 +53,9 @@ normx[4]=(entradas[4]-9)*(1-(-1))/(180-9)+(-1);
     } 
      normy=1/(1+exp((sum_salidas+bias2)*-1)); //funcion de activacion final
      y=(((normy-0)*2)/1)+1;  //SALIDA FINAL DE LA RED NEURONAL
+//REINICIO DE LAS VARIABLES DE SUMA. Esto para que no se acumulen los valores y arrojen errores.
+        sum={0,0,0,0,0,0,0,0,0,0;
+	sum_salidas=0;
 //ASIGNACION DE GRADOS DE SALUD
 if(y>=0.95 && y<= 1.05)
 	grado_salud=1; 
