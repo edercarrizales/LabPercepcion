@@ -1,44 +1,57 @@
 
-/* CODIGO PRINCIPAL DE LA RED NEURONAL (PUDO COMPILARSE, FALTA VERIFICARLO)*/
-#include "Neurona.h" //para incluir a la clase Neurona en nuestro codigo principal
-Neurona neuron[10]; //creación de un vector de objetos con las 10 neuronas
-float pesos[10][5]={{0.98974, 0.8106, -1.3236, 1.3094, -0.96841}, //matriz de pesos de las entradas
-	           {-1.0236, 1.2626, -1.1912, -0.93483, 0.17389},
-	           {-1.0334, 0.97535, 0.70657, -0.77163, 1.5046},
-	           {0.48952, -1.4867, -1.1721, -1.0599, -0.1817},
-	           {-1.3093, -0.86667, -0.53684, 0.1581, 1.4143},
-	           {0.65461, -0.56113, 0.22411, -1.7109, 1.0781},
-	           {1.1982, 1.1231, -1.4408, -0.40939, -0.47364},
-	           {0.44124, 0.4415, 0.4986, -1.8219, 0.70645},
-	           {0.78649, 0.97337, -0.020147, -1.3024, -1.2905},
-	           {-0.84858, -0.42739, -1.1201, 0.91443, 1.391}};
-float o[10]={-0.8133, -0.72435, 0.94446, -0.48808, 0.54746, 0.1182, -0.86334, -0.32111, 0.19862, -0.048843}; //vector de pesos de las salidas de cada neurona
-float wbias[10]={-1.9225, 1.8616, 1.0561, -0.84638, 0.22494, 0.26181, 0.58798, 1.3424, 1.7201, -2.2158}; //vector de pesos de los bias de cada neurona
-float entradas[5]={100,20,20,70,90};  //vector para entradas. Aqui asigné las entradas para probar con el primer caso de nuestra tabla.
-float sum_salidas; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
-float normy,y; //variables de salida de la red neuronal
+#include <iostream>
+using namespace std;
+#include <stdio.h>
+#include <math.h>
 
-void setup(){
-//INICIO MONITOR SERIAL
-Serial.begin(9600);
-   for(int i=0;i<10;i++){ //asignacion de pesos y bias para cada neurona
-      neuron[i].setbias(wbias[i]);
+/* CODIGO PRINCIPAL DE LA RED NEURONAL en c++ (PUDO COMPILARSE y FUNCIONA*/
+
+float pesos[10][5]={{-2.2566 ,-1.6073, 4.5879, -1.7217, 2.8855}, //matriz de pesos
+{2.5878, 2.3727 ,0.65321 ,-2.5595, -0.62181},
+ {-2.448 ,-2.2294 ,-1.003, 2.3426 ,-1.5004},
+ {1.6966 ,-1.2221, -0.74892, 4.2356 ,-1.4105},
+ {1.3647, -1.2293, -1.0779, 0.84817 ,-3.7749},
+ {0.55926 ,0.28109, -2.5553, 0.057725, -2.6402},
+ {-2.4934, 2.1719 ,-1.3042, -1.094, 2.7571},
+ {-0.62004, 1.2122, -4.5157 ,3.4804, 1.7965},
+ {-2.533 ,0.59524 ,-3.1944, -1.4765, 0.84828},
+ {1.5498 ,-1.8177, -1.3099, -1.9517, -2.7161}};
+float o[10]={5.3685, -0.22467, 0.41556 ,-2.4524, -1.9709, -2.3866, 1.2674, -4.8561, 0.015185, 0.09361}; //vector de pesos de las salidas de cada neurona
+float wbias[10]={3.4430,-3.5317, 2.9038 ,-0.9064,-0.1030 ,-0.4307,-1.3326,-1.3909 ,  -3.6082 ,   4.5604}; //vector de pesos de los bias de cada neurona
+float entradas[5]={58,	38,	54,	108,29};  //vector para entradas. Aqui asigné las entradas para probar con el primer caso de nuestra tabla.
+float sum_salidas=0; //variable que guarda la sumatoria de las salidas de las neuronas por su peso
+float normy,y; //variable de salida de la red neuronal
+float bias2=1.619; //bias del nodo de salida
+float sum[10]; //variable auxiliar para sumatoria de los pesos por su entrada en la neurona
+float xw[10][5]; //matriz que guarda la multiplicacion de los pesos por las entradas
+float ofx[10]; //array de activación por el peso del nodo de salida
+float fx[10]; //array que guarda la activacion de la sumatoria de la neurona
+float normx[5]; //entradas normalizadas
+
+
+
+
+int main(){
+	
+normx[0]=(entradas[0]-0)*(1-(-1))/(100-0)+(-1);
+normx[1]=(entradas[1]-20)*(1-(-1))/(70-20)+(-1);
+normx[2]=(entradas[2]-20)*(1-(-1))/(70-20)+(-1);
+normx[3]=(entradas[3]-0)*(1-(-1))/(118-0)+(-1);
+normx[4]=(entradas[4]-9)*(1-(-1))/(180-9)+(-1);   
+
+   for(int i=0;i<10;i++){
      for(int j=0;j<5;j++){
-     neuron[i].setpesos(pesos[i][j]);
-     }
+          xw[i][j]=pesos[i][j]*normx[j];
+          sum[i]=sum[i]+xw[i][j];
+      }
+      fx[i]=1/(1+exp(-1*(sum[i]+wbias[i])));
+      ofx[i]=fx[i]*o[i];
+      sum_salidas=ofx[i]+sum_salidas;
    } 
+   normy=1/(1+exp((sum_salidas+bias2)*-1));
+     y=(((normy-0)*2)/1)+1;  //SALIDA FINAL DE LA RED NEURONAL
+     cout <<"Salida normalizada: " << normy <<",  ";
+	cout <<"Salida final: "<< y <<",";
+        return 0;
 }
 
-void loop(){
-
-  for(int k=0;k<10;k++){ 
-     for(int m=0;m<5;m++){
-     neuron[k].setentradas(entradas[m]);  //ASIGNAR ENTRADAS A CADA NEURONA
-     }
-     neuron[k].sumatoria(); //realiza la sumatoria y funcion para cada neurona
-     sum_salidas+=neuron[k].getfx()*o[k]; //sumatoria de las salidas de las neuronas multiplicadas por su peso
-  }
-  normy=1/(1+exp(sum_salidas*-1)); //SALIDA DE LA RED NEURONAL NORMALIZADA EN RANGO 0 A 1
-  y=(normy*2)+1; //SALIDA DE LA RED NEURONAL DESNORMALIZADA
-  Serial.println(y);
-}
