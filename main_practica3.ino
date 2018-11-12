@@ -109,44 +109,44 @@ if (x <=80) { //saca grado en conjunto muy alto
 float grado_pulso(float x){ 
 float bajo,muybajo,medio,alto,muyalto;
 //rutina que obtiene grado de pertenencia PULSO CARDIACO
-if (x <= 10) { //saca grado en conjunto muy bajo
+if (x <= 0) { //saca grado en conjunto muy bajo
  muybajo=1;
-}else if (x >= 20) {
+}else if (x >= 30) {
  muybajo = 0;
- } else if (x >10 && x <20) {
- muybajo= (20-x)/(20-10);
+ } else if (x >15 && x <30) {
+ muybajo= (30-x)/(30-15);
 }
 
-if (x <=10 && x>=50) { //saca grado en conjunto bajo
+if (x <=10 && x>=60) { //saca grado en conjunto bajo
  bajo=0;
-}else if (x > 10 && x <=30) {
- bajo = (x - 10)/(30-10);
- } else if (x >=30 && x <50) {
- bajo= (50-x)/(50-30);
+}else if (x > 10 && x <=35) {
+ bajo = (x - 10)/(35-10);
+ } else if (x >=35 && x <60) {
+ bajo= (60-x)/(60-35);
 }
 
-if (x <=30 && x>=70) { //saca grado en conjunto medio
+if (x <=40 && x>=90) { //saca grado en conjunto medio
  medio =0;
-}else if (x > 30 && x <=50) {
- medio = (x - 30)/(50-30);
- } else if (x >=50 && x <70) {
- medio = (70-x)/(70-50);
+}else if (x > 40 && x <=65) {
+ medio = (x - 40)/(65-40);
+ } else if (x >=65 && x <90) {
+ medio = (90-x)/(90-65);
 }
 
 
-if (x <=50 && x>=90) { //saca grado en conjunto alto
+if (x <=70 && x>=120) { //saca grado en conjunto alto
  alto =0;
-}else if (x > 50 && x <=70) {
- alto = (x - 50)/(70-50);
- } else if (x >=70 && x <90) {
- alto = (70-x)/(90-70);
+}else if (x > 70 && x <=96) {
+ alto = (x - 70)/(95-70);
+ } else if (x >=95 && x <120) {
+ alto = (120-x)/(120-95);
 }
 
-if (x <=80) { //saca grado en conjunto muy alto
+if (x <=100) { //saca grado en conjunto muy alto
  muyalto =0;
-}else if (x > 80 && x <90) {
- muyalto = (x-80)/(90-80);
- } else if (x >=90) {
+}else if (x > 100 && x <115) {
+ muyalto = (x-100)/(115-100);
+ } else if (x >=130) {
  muyalto = 1;
 }
 
