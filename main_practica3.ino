@@ -60,14 +60,12 @@ double FuzzySysT1(double X[],int DB[][3])
                       ,{0, 0.3333, 0.6666}
                       ,{0.3333, 0.6666, 1}};
     double V[3];
-    double AC[5]={-0.5,0,.5,1};
-    double Fo[25];
-    for(int r=0;r<=(reglas-1);r++)
-      {
+    double AC[5]={0,0.25,0.5,0.75,1};
+    double Fo[reglas];
+    for(int r=0;r<=(reglas-1);r++){
       double sumin=1;
       int n;
-      for(int i=0;i<=(entradas-1);i++)
-          {
+      for(int i=0;i<=(entradas-1);i++){
             n=DB[r][i]-1;
             if(n>-1){
             V[0]=PARAM[n][0];
@@ -80,15 +78,13 @@ double FuzzySysT1(double X[],int DB[][3])
      Fo[r] = sumin;
    }
       double sum1=0; double sum2=0.00000001;
-      for(int r=0;r<=(reglas);r++)
-      {
-      sum1=(sum1+(Fo[r]*AC[DB[r][2]-1]));
-      sum2=(sum2+Fo[r]);
-
-       }
+      for(int r=0;r<=(reglas);r++){
+         sum1=(sum1+(Fo[r]*AC[DB[r][2]-1]));
+         sum2=(sum2+Fo[r]);
+         }
       double y=sum1/sum2;
       return y;
-      }
+}
 
 
 
